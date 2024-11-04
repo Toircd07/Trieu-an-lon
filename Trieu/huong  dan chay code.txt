@@ -1,0 +1,9 @@
+ tải file về rồi điều hướng tẻminal đến thư mục Trieu
+
+  sau đó chạy lệnh dưới đây
+  
+  g++ -Ithuvien main.cpp ham\*.cpp -o main
+
+  rồi ấn enter - rồi ./main enter tiếp 
+
+  Note : trong terminal VScode thì dùng ./main còn cmd thì dung .\main
