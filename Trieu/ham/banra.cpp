@@ -25,10 +25,10 @@ string DonHang::toCSVFormat() const {
     stringstream ss;
     ss << ngay;
     for (int i = 0; i < 5; i++) {
-        ss << ";" << soLuong[i];
+        ss << "," << soLuong[i];
     }
     for (int i = 0; i < 5; i++) {
-        ss << ";" << gia[i];
+        ss << "," << gia[i];
     }
     return ss.str() + "\n";
 }
@@ -51,7 +51,7 @@ void QuanLyDonHang::docTuFile(const string& tenFile) {
 
     while (getline(file, line)) {
         stringstream ss(line);
-        getline(ss, ngay, ';');
+        getline(ss, ngay, ',');
         for (int i = 0; i < 5; i++) {
             ss >> soLuong[i];
             ss.ignore();
@@ -71,7 +71,7 @@ void QuanLyDonHang::luuVaoFile(const string& tenFile) {
         cerr << "Khong the mo file " << tenFile << endl;
         return;
     }
-    file << "ngay;so_luong_A1;so_luong_A2;so_luong_A3;so_luong_A4;so_luong_A5;gia_A1;gia_A2;gia_A3;gia_A4;gia_A5\n";
+    file << "ngay,so_luong_A1,so_luong_A2,so_luong_A3,so_luong_A4,so_luong_A5,gia_A1,gia_A2,gia_A3,gia_A4,gia_A5\n";
     for (const auto& donHang : danhSachDonHang) {
         file << donHang.toCSVFormat();
     }
@@ -92,8 +92,8 @@ void QuanLyDonHang::capNhatDonHangTuFile(const string& tenFile) {
 
     while (getline(file, line)) {
         stringstream ss(line);
-        getline(ss, ngay, ';');
-        getline(ss, loaiThit, ';');
+        getline(ss, ngay, ',');
+        getline(ss, loaiThit, ',');
         ss >> soLuong;
 
         for (auto& donHang : danhSachDonHang) {
@@ -123,7 +123,7 @@ void QuanLyDonHang::luuDanhSachDonHang(const string& tenFile) {
         cerr << "Khong the mo file " << tenFile << endl;
         return;
     }
-    file << "ngay;so_luong_A1;so_luong_A2;so_luong_A3;so_luong_A4;so_luong_A5;gia_A1;gia_A2;gia_A3;gia_A4;gia_A5\n";
+    file << "ngay,so_luong_A1,so_luong_A2,so_luong_A3,so_luong_A4,so_luong_A5,gia_A1,gia_A2,gia_A3,gia_A4,gia_A5\n";
     for (const auto& donHang : danhSachDonHang) {
         file << donHang.toCSVFormat();
     }
@@ -214,6 +214,6 @@ void QuanLyDonHang::timKiemDonHang(const string& ngay) const {
 }
 
 void QuanLyDonHang::capNhatDuLieu() {
-    capNhatDonHangTuFile("data/Costumer (2).csv");
+    capNhatDonHangTuFile("data/Costumer.csv");
     luuDanhSachDonHang("data/donhangbanra.csv");
 }
