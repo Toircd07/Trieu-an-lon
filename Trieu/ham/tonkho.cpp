@@ -33,10 +33,10 @@ string SanPhamTonKho::toCSVFormat() const {
     stringstream ss;
     ss << ngay;
     for (const auto& sl : soLuong) {
-        ss << ";" << sl;
+        ss << "," << sl;
     }
     for (const auto& g : gia) {
-        ss << ";" << g;
+        ss << "," << g;
     }
     return ss.str() + "\n";
 }
@@ -59,7 +59,7 @@ void QuanLyTonKho::docTuFile(const string& tenFile) {
 
     while (getline(file, line)) {
         stringstream ss(line);
-        getline(ss, ngay, ';');
+        getline(ss, ngay, ',');
         for (int i = 0; i < 5; i++) {
             ss >> soLuong[i];
             ss.ignore();
@@ -80,7 +80,7 @@ void QuanLyTonKho::luuVaoFile(const string& tenFile) {
         cerr << "Khong the mo file " << tenFile << endl;
         return;
     }
-    file << "ngay;so_luong_A1;so_luong_A2;so_luong_A3;so_luong_A4;so_luong_A5;gia_A1;gia_A2;gia_A3;gia_A4;gia_A5\n";
+    file << "ngay,so_luong_A1,so_luong_A2,so_luong_A3,so_luong_A4,so_luong_A5,gia_A1,gia_A2,gia_A3,gia_A4,gia_A5\n";
     for (const auto& sanPham : danhSachTonKho) {
         file << sanPham.toCSVFormat();
     }
